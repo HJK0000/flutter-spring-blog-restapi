@@ -92,7 +92,7 @@ public class UserControllerTest extends MyWithRestDoc {
         String requestBody = om.writeValueAsString(loginDTO);
         System.out.println(requestBody);
 
-        ResultActions resultActions = mvc.perform(
+        ResultActions resultActions = mvc.perform( // dio.post 같은거임 -> resultAction에 body와 header가 같이 들어감
                 post("/login").content(requestBody).contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -107,8 +107,8 @@ public class UserControllerTest extends MyWithRestDoc {
         // verify
         resultActions.andExpect(header().string("Authorization", Matchers.notNullValue()));
         resultActions.andExpect(jsonPath("$.success").value("true"));
-        resultActions.andExpect(jsonPath("$.response.id").value(1));
-        resultActions.andExpect(jsonPath("$.response.username").value("ssar"));
+        resultActions.andExpect(jsonPath("$.response.id").value(1)); // 상태검증 -> 리턴되는 값을 그대로 검증함
+        resultActions.andExpect(jsonPath("$.response.username").value("ssar")); // 배포할 때 테스트서버에서 도는데
         resultActions.andExpect(jsonPath("$.response.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());

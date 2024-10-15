@@ -22,6 +22,7 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
 
+    // 테스트용으로 만든 거
     @GetMapping("/init/download")
     public ResponseEntity<?> initDownload() {
         try {
@@ -29,7 +30,7 @@ public class UserController {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return ResponseEntity.ok(ApiUtil.success(null));
+        return ResponseEntity.ok(ApiUtil.success(null)); // 3초 있다가 실행된다.
     }
 
     @GetMapping("/init/user")

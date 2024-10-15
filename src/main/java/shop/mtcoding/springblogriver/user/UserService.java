@@ -77,9 +77,9 @@ public class UserService {
             );
             return new UserResponse.AutoLoginDTO(userPS);
         }catch (SignatureVerificationException | JWTDecodeException e1) {
-            throw new Exception401(JwtEnum.ACCESS_TOKEN_INVALID.name());
+            throw new Exception401(JwtEnum.ACCESS_TOKEN_INVALID.name()); // 토큰이 유효하지 않음
         } catch (TokenExpiredException e2){
-            throw new Exception401(JwtEnum.ACCESS_TOKEN_TIMEOUT.name());
+            throw new Exception401(JwtEnum.ACCESS_TOKEN_TIMEOUT.name()); // 유효기간 지남
         }
     }
 
